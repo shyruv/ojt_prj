@@ -1,0 +1,8 @@
+@import '@core/scss/angular/libs/datatables.component.scss';
+@import '@core/scss/base/bootstrap-extended/include'; // Bootstrap includes
+@import '@core/scss/angular/libs/flatpickr.component.scss';
+::-ms-reveal {
+    display: none
+}
+@import '@core/scss/angular/libs/form-wizard.component.scss';
+@import '@core/scss/angular/libs/select.component.scss';

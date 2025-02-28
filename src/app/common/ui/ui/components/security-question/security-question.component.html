@@ -1,0 +1,43 @@
+<div class="modal-header">
+    <h4 class="modal-title">Security Question/s</h4>
+    <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" tabindex="0" ngbAutofocus>
+    <form class="auth-login-form mt-2" (ngSubmit)="onSubmit()">
+        <div class="form-group" *ngFor="let q of securityQuestions; let i=index">
+            <label class="form-label">{{q.value}}</label>
+            <!-- <input
+              type="password"
+              class="form-control"
+              [(ngModel)]="q.questionAnswer"
+              [name]="q.key"
+            /> -->
+            <div class="input-group input-group-merge form-password-toggle">
+              <input
+              
+                [type]="q.passwordType ? 'password' : 'text'"
+                type="password"
+                class="form-control"
+                [(ngModel)]="q.questionAnswer"
+                [name]="q.key"
+              />
+              <div class="input-group-append">
+                <span class="input-group-text cursor-pointer"
+                  ><i
+                    class="feather font-small-4"
+                    [ngClass]="{
+                      'icon-eye-off': q.passwordType,
+                      'icon-eye': !q.passwordType
+                    }"
+                    (click)="togglePasswordTextType(q)"
+                  ></i
+                ></span>
+              </div>
+            </div>
+
+        </div>
+        <button class="btn btn-primary btn-block" tabindex="4" rippleEffect>Submit</button>
+    </form>
+</div>

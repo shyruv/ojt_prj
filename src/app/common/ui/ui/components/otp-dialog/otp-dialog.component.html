@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h4 class="modal-title">Two Step Verification</h4>
+    <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" tabindex="0" ngbAutofocus>
+        <p *ngIf="destination?.isEmailAddress && !destination?.secondaryOwner" class="card-text mb-2">Enter the verification code that was sent to your email.</p>
+        <p *ngIf="!destination?.isEmailAddress && !destination?.secondaryOwner" class="card-text mb-2">Enter the verification code that was sent to your mobile number.</p>
+        <p *ngIf="destination?.secondaryOwner" class="card-text mb-2">Enter the verification code that was sent to your email address and mobile number.</p>
+        
+        <p class="font-weight-bolder mb-2 card-text"><span>{{destination?.masked}}</span></p>
+        <form class="auth-login-form mt-2" [formGroup]="otpForm" (ngSubmit)="onSubmit()" autocomplete="off">
+          <h6>Type your 6 digit security code</h6>
+          <div class="auth-input-wrapper d-flex align-items-center justify-content-between">
+              <input maxlength="1" mask="0" autocomplete="off" formControlName="otp1" (keyup)="onDigitInput($event)" class="auth-input height-50 text-center numeral-mask mx-25 mb-1 form-control">
+              <input maxlength="1" mask="0" autocomplete="off" formControlName="otp2" (keyup)="onDigitInput($event)" class="auth-input height-50 text-center numeral-mask mx-25 mb-1 form-control">
+              <input maxlength="1" mask="0" autocomplete="off" formControlName="otp3" (keyup)="onDigitInput($event)" class="auth-input height-50 text-center numeral-mask mx-25 mb-1 form-control">
+              <input maxlength="1" mask="0" autocomplete="off" formControlName="otp4" (keyup)="onDigitInput($event)" class="auth-input height-50 text-center numeral-mask mx-25 mb-1 form-control">
+              <input maxlength="1" mask="0" autocomplete="off" formControlName="otp5" (keyup)="onDigitInput($event)" class="auth-input height-50 text-center numeral-mask mx-25 mb-1 form-control">
+              <input maxlength="1" mask="0" autocomplete="off" formControlName="otp6" (keyup)="onDigitInput($event)" class="auth-input height-50 text-center numeral-mask mx-25 mb-1 form-control">
+          </div>
+          <button class="btn btn-primary btn-block" tabindex="4" rippleEffect>Submit</button>
+        </form>
+
+        <div
+          *ngIf="submitted && (f.otp1.errors || f.otp2.errors || f.otp3.errors || f.otp4.errors || f.otp5.errors || f.otp6.errors)"
+          class="invalid-feedback"
+          [ngClass]="{ 'd-block': submitted && (f.otp1.errors || f.otp2.errors || f.otp3.errors || f.otp4.errors || f.otp5.errors || f.otp6.errors) }"
+        >
+          <div>Invalid OTP</div>
+        </div>
+        
+       
+        <p class="text-center mt-2" *ngIf="otpSend">
+          <span>Didn’t get the code? </span>
+          <a (click)="sendOtp()" *ngIf="otpResendCountdown === 0">Resend </a>
+          <span *ngIf="otpResendCountdown > 0">Resend </span>
+          <span *ngIf="otpResendCountdown > 0">({{otpResendCountdown}} second/s)</span>
+        </p>
+</div>
