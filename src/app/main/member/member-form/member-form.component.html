@@ -2,204 +2,407 @@
   <div class="content-body">
     <app-content-header [contentHeader]="contentHeader"></app-content-header>
     <section id="members">
-      <div class="card col-md-12">
-        <div class="card-body">
-          <div class="card custom-card">
-            <div style="display: flex; justify-content: space-between">
-              <div>
-                <p
-                  style="
-                    font-weight: 500;
-                    text-align: left;
-                    font-size: 14px;
-                    margin: 0;
-                  "
+      <section class="modern-horizontal-wizard">
+        <div
+          id="stepper1"
+          class="bs-stepper wizard-modern modern-wizard-example"
+        >
+          <div class="bs-stepper-header">
+            <div data-target="#personal-info-modern" class="step" (click)="goTo(1)">
+              <button type="button" class="step-trigger">
+                <span class="bs-stepper-box"
+                  ><i class="font-medium-2" data-feather="user"></i></span
+                ><span class="bs-stepper-label"
+                  ><span class="bs-stepper-title">Personal Info</span
+                  ><span class="bs-stepper-subtitle"
+                    >Add Personal Info</span
+                  ></span
                 >
-                  Personal Info
-                </p>
-                <p style="text-align: left; font-size: 12px; margin: 0">
-                  Enter Your Personal Info
-                </p>
+              </button>
+            </div>
+            <div class="line">
+              <i data-feather="chevron-right" class="font-medium-2"></i>
+            </div>
+            <div data-target="#training-modern" class="step" (click)="goTo(2)">
+              <button type="button" class="step-trigger" >
+                <span class="bs-stepper-box"
+                  ><i class="font-medium-2" data-feather="type"></i></span
+                ><span class="bs-stepper-label"
+                  ><span class="bs-stepper-title">Training</span
+                  ><span class="bs-stepper-subtitle"
+                    >Set Training Details</span
+                  ></span
+                >
+              </button>
+            </div>
+            <div class="line">
+              <i data-feather="chevron-right" class="font-medium-2"></i>
+            </div>
+            <div data-target="#payment-modern" class="step" (click)="goTo(3)">
+              <button type="button" class="step-trigger">
+                <span class="bs-stepper-box"
+                  ><i
+                    class="font-medium-2"
+                    data-feather="dollar-sign"
+                  ></i></span
+                ><span class="bs-stepper-label"
+                  ><span class="bs-stepper-title">Payment</span
+                  ><span class="bs-stepper-subtitle">Add Payment</span></span
+                >
+              </button>
+            </div>
+            <div class="line">
+              <i data-feather="chevron-right" class="font-medium-2"></i>
+            </div>
+            <div data-target="#requirements-modern" class="step" (click)="goTo(4)">
+              <button type="button" class="step-trigger">
+                <span class="bs-stepper-box"
+                  ><i class="font-medium-2" data-feather="briefcase"></i></span
+                ><span class="bs-stepper-label"
+                  ><span class="bs-stepper-title">Requirements</span
+                  ><span class="bs-stepper-subtitle"
+                    >Submit Requirements</span
+                  ></span
+                >
+              </button>
+            </div>
+            <div class="line">
+              <i data-feather="chevron-right" class="font-medium-2"></i>
+            </div>
+            <div data-target="#review-modern" class="step" (click)="goTo(5)">
+              <button type="button" class="step-trigger">
+                <span class="bs-stepper-box"
+                  ><i class="font-medium-2" data-feather="file-text"></i></span
+                ><span class="bs-stepper-label"
+                  ><span class="bs-stepper-title">Review</span
+                  ><span class="bs-stepper-subtitle">Review Your Info</span></span
+                >
+              </button>
+            </div>
+          </div>
+          <div class="bs-stepper-content">
+            <div
+              id="personal-info-modern"
+              class="content fade dstepper-block dstepper-none"
+            >
+              <div class="content-header">
+                <h5 class="mb-0">Personal Info</h5>
+                <small class="text-muted">Enter Your Personal Info.</small>
+              </div>
+              <form class="form">
+                <form #personalInfoForm="ngForm">
+                  <div class="form-row">
+                    <div class="form-group col-4">
+                      <label class="form-label" for="firstName"
+                        >First Name</label
+                      >
+                      <input
+                        name="firstName"
+                        required
+                        type="text"
+                        class="form-control"
+                        id="firstName"
+                        [(ngModel)]="personalInfo.firstName"
+                      />
+                    </div>
+                    <div class="form-group col-4">
+                      <label class="form-label" for="middleName"
+                        >Middle Name</label
+                      >
+                      <input
+                        name="middleName"
+                        type="text"
+                        class="form-control"
+                        id="middleName"
+                        [(ngModel)]="personalInfo.middleName"
+                      />
+                    </div>
+                    <div class="form-group col-4">
+                      <label class="form-label" for="lastName">Last Name</label>
+                      <input
+                        name="lastName"
+                        required
+                        type="text"
+                        class="form-control"
+                        id="lastName"
+                        [(ngModel)]="personalInfo.lastName"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group col-4">
+                      <label class="form-label" for="suffix">Suffix</label>
+                      <select
+                        name="suffixName"
+                        id="suffixName"
+                        class="form-control"
+                        [(ngModel)]="personalInfo.suffixName"
+                      >
+                        <option value="Jr">Jr.</option>
+                        <option value="Sr">Sr.</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-4">
+                      <label class="form-label" for="gender">Gender</label>
+                      <select
+                        name="gender"
+                        required
+                        id="gender"
+                        class="form-control"
+                        [(ngModel)]="personalInfo.gender"
+                      >
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-4">
+                      <label class="form-label" for="province">Province</label>
+                      <select
+                        name="province"
+                        required
+                        id="province"
+                        class="form-control"
+                        [(ngModel)]="personalInfo.province"
+                      >
+                        <option value="batangas">batangas</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group col-4">
+                      <label class="form-label" for="city"
+                        >City/Municipality</label
+                      >
+                      <select
+                        name="city"
+                        required
+                        id="city"
+                        class="form-control"
+                        [(ngModel)]="personalInfo.city"
+                      >
+                        <option value="batangas city">batangas city</option>
+                        <option></option>
+                      </select>
+                    </div>
+                    <div class="form-group col-4">
+                      <label class="form-label" for="barangay">Barangay</label>
+                      <select
+                        name="barangay"
+                        required
+                        id="barangay"
+                        class="form-control"
+                        [(ngModel)]="personalInfo.barangay"
+                      >
+                        <option value="sorosoro">sorosoro</option>
+                        <option></option>
+                      </select>
+                    </div>
+                    <div class="form-group col-4">
+                      <label class="form-label" for="zipCode">Zip Code</label>
+                      <input
+                        name="zipCode"
+                        required
+                        type="text"
+                        class="form-control"
+                        id="zipCode"
+                        [(ngModel)]="personalInfo.zipCode"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group col-4">
+                      <label class="form-label" for="birthDate"
+                        >Birth Date</label
+                      >
+                      <ng2-flatpickr
+                        name="birthDate"
+                        required
+                        id="birthDate"
+                        [(ngModel)]="personalInfo.birthDate"
+                        [config]="customDateOptions"
+                        ng2-flatpickr-custom
+                        (change)="onChangeBirthDate($event)"
+                      >
+                      </ng2-flatpickr>
+                    </div>
+                    <div class="form-group col-4">
+                      <label class="form-label" for="age">Age</label>
+                      <input
+                        readonly
+                        name="age"
+                        required
+                        type="text"
+                        class="form-control"
+                        id="age"
+                        [(ngModel)]="personalInfo.age"
+                      />
+                    </div>
+                    <div class="form-group col-4">
+                      <label class="form-label" for="phoneNumber"
+                        >Phone Number</label
+                      >
+                      <input
+                        name="phoneNumber"
+                        required
+                        type="text"
+                        class="form-control"
+                        id="phoneNumber"
+                        [(ngModel)]="personalInfo.phoneNumber"
+                      />
+                    </div>
+                  </div>
+                </form>
+              </form>
+              <div class="d-flex justify-content-between">
+                <button
+                  disabled=""
+                  rippleeffect=""
+                  class="btn btn-outline-secondary btn-prev waves-effect"
+                >
+                  <i data-feather="arrow-left" class="font-medium-2 mr-50"></i
+                  ><span class="align-middle d-sm-inline-block d-none"
+                    >Previous</span
+                  ></button
+                ><button
+                  rippleeffect=""
+                  class="btn btn-primary btn-next waves-effect waves-float waves-light"
+                >
+                  <span class="align-middle d-sm-inline-block d-none">Next</span
+                  ><i data-feather="arrow-right" class="font-medium-2 ml-50"></i
+                    >
+                </button>
               </div>
             </div>
-            <br />
-            <form class="form">
-              <form #personalInfoForm="ngForm">
-                <div class="form-row">
-                  <div class="form-group col-4">
-                    <label class="form-label" for="firstName">First Name</label>
-                    <input
-                      name="firstName"
-                      required
-                      type="text"
-                      class="form-control"
-                      id="firstName"
-                      [(ngModel)]="personalInfo.firstName"
-                    />
-                  </div>
-                  <div class="form-group col-4">
-                    <label class="form-label" for="middleName"
-                      >Middle Name</label
-                    >
-                    <input
-                      name="middleName"
-                      type="text"
-                      class="form-control"
-                      id="middleName"
-                      [(ngModel)]="personalInfo.middleName"
-                    />
-                  </div>
-                  <div class="form-group col-4">
-                    <label class="form-label" for="lastName">Last Name</label>
-                    <input
-                      name="lastName"
-                      required
-                      type="text"
-                      class="form-control"
-                      id="lastName"
-                      [(ngModel)]="personalInfo.lastName"
-                    />
-                  </div>
-                </div>
+            <div
+              id="training-modern"
+              class="content fade dstepper-block active"
+            >
+              <div class="content-header">
+                <h5 class="mb-0">Training</h5>
+                <small>Set training details.</small>
+              </div>
 
-                <div class="form-row">
-                  <div class="form-group col-4">
-                    <label class="form-label" for="suffix">Suffix</label>
-                    <select
-                      name="suffixName"
-                      id="suffixName"
-                      class="form-control"
-                      [(ngModel)]="personalInfo.suffixName"
+              <!--Training Form Here-->
+              
+              <div class="d-flex justify-content-between">
+                <button
+                  disabled=""
+                  rippleeffect=""
+                  class="btn btn-outline-secondary btn-prev waves-effect"
+                >
+                  <i data-feather="arrow-left" class="font-medium-2 mr-50"></i
+                  ><span class="align-middle d-sm-inline-block d-none"
+                    >Previous</span
+                  ></button
+                ><button
+                  rippleeffect=""
+                  class="btn btn-primary btn-next waves-effect waves-float waves-light"
+                >
+                  <span class="align-middle d-sm-inline-block d-none">Next</span
+                  ><i data-feather="arrow-right" class="font-medium-2 ml-50"></i
                     >
-                      <option value="Jr">Jr.</option>
-                      <option value="Sr">Sr.</option>
-                    </select>
-                  </div>
-                  <div class="form-group col-4">
-                    <label class="form-label" for="gender">Gender</label>
-                    <select
-                      name="gender"
-                      required
-                      id="gender"
-                      class="form-control"
-                      [(ngModel)]="personalInfo.gender"
-                    >
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                    </select>
-                  </div>
-                  <div class="form-group col-4">
-                    <label class="form-label" for="province">Province</label>
-                    <select
-                      name="province"
-                      required
-                      id="province"
-                      class="form-control"
-                      [(ngModel)]="personalInfo.province"
-                    >
-                      <option value="batangas">batangas</option>
-                    </select>
-                  </div>
-                </div>
+                </button>
+              </div>
+            </div>
+            <div
+              id="payment-modern"
+              class="content fade dstepper-block dstepper-none"
+            >
+              <div class="content-header">
+                <h5 class="mb-0">Payment</h5>
+                <small>Add payment.</small>
+              </div>
+              
+              <!--Payment Form Goes Here-->
 
-                <div class="form-row">
-                  <div class="form-group col-4">
-                    <label class="form-label" for="city"
-                      >City/Municipality</label
+              <div class="d-flex justify-content-between">
+                <button
+                  disabled=""
+                  rippleeffect=""
+                  class="btn btn-outline-secondary btn-prev waves-effect"
+                >
+                  <i data-feather="arrow-left" class="font-medium-2 mr-50"></i
+                  ><span class="align-middle d-sm-inline-block d-none"
+                    >Previous</span
+                  ></button
+                ><button
+                  rippleeffect=""
+                  class="btn btn-primary btn-next waves-effect waves-float waves-light"
+                >
+                  <span class="align-middle d-sm-inline-block d-none">Next</span
+                  ><i data-feather="arrow-right" class="font-medium-2 ml-50"></i
                     >
-                    <select
-                      name="city"
-                      required
-                      id="city"
-                      class="form-control"
-                      [(ngModel)]="personalInfo.city"
-                    >
-                      <option value="batangas city">batangas city</option>
-                      <option></option>
-                    </select>
-                  </div>
-                  <div class="form-group col-4">
-                    <label class="form-label" for="barangay">Barangay</label>
-                    <select
-                      name="barangay"
-                      required
-                      id="barangay"
-                      class="form-control"
-                      [(ngModel)]="personalInfo.barangay"
-                    >
-                      <option value="sorosoro">sorosoro</option>
-                      <option></option>
-                    </select>
-                  </div>
-                  <div class="form-group col-4">
-                    <label class="form-label" for="zipCode">Zip Code</label>
-                    <input
-                      name="zipCode"
-                      required
-                      type="text"
-                      class="form-control"
-                      id="zipCode"
-                      [(ngModel)]="personalInfo.zipCode"
-                    />
-                  </div>
-                </div>
+                </button>
+              </div>
+            </div>
+            <div
+              id="requirements-modern"
+              class="content fade dstepper-block dstepper-none"
+            >
+              <div class="content-header">
+                <h5 class="mb-0">Requirements</h5>
+                <small>Submit requirements.</small>
+              </div>
 
-                <div class="form-row">
-                  <div class="form-group col-4">
-                    <label class="form-label" for="birthDate">Birth Date</label>
-                    <ng2-flatpickr
-                      name="birthDate"
-                      required
-                      id="birthDate"
-                      [(ngModel)]="personalInfo.birthDate"
-                      [config]="customDateOptions"
-                      ng2-flatpickr-custom
-                      (change)="onChangeBirthDate($event)"
-                    >
-                    </ng2-flatpickr>
-                  </div>
-                  <div class="form-group col-4">
-                    <label class="form-label" for="age">Age</label>
-                    <input
-                      readonly
-                      name="age"
-                      required
-                      type="text"
-                      class="form-control"
-                      id="age"
-                      [(ngModel)]="personalInfo.age"
-                    />
-                  </div>
-                  <div class="form-group col-4">
-                    <label class="form-label" for="phoneNumber"
-                      >Phone Number</label
-                    >
-                    <input
-                      name="phoneNumber"
-                      required
-                      type="text"
-                      class="form-control"
-                      id="phoneNumber"
-                      [(ngModel)]="personalInfo.phoneNumber"
-                    />
-                  </div>
-                </div>
+              <!--Requirements Form Goes Here-->
 
-                <div style="display: flex; width: 100%">
-                  <button
-                    type="button"
-                    (click)="addMembers()"
-                    class="btn btn-primary"
-                    style="margin-left: auto"
-                  >
-                    Submit
-                  </button>
-                </div>
-              </form>
-            </form>
+              <div class="d-flex justify-content-between">
+                <button
+                  disabled=""
+                  rippleeffect=""
+                  class="btn btn-outline-secondary btn-prev waves-effect"
+                >
+                  <i data-feather="arrow-left" class="font-medium-2 mr-50"></i
+                  ><span class="align-middle d-sm-inline-block d-none"
+                    >Previous</span
+                  ></button
+                ><button
+                  rippleeffect=""
+                  class="btn btn-primary btn-next waves-effect waves-float waves-light"
+                >
+                  <span class="align-middle d-sm-inline-block d-none">Next</span
+                  ><i data-feather="arrow-right" class="font-medium-2 ml-50"></i
+                    >
+                </button>
+              </div>
+            </div>
+            <div
+              id="review-modern"
+              class="content fade dstepper-block dstepper-none"
+            >
+              <div class="content-header">
+                <h5 class="mb-0">Review</h5>
+                <small>Review your information.</small>
+              </div>
+
+              <!--Review Form Goes Here-->
+
+              <div class="d-flex justify-content-between">
+                <button
+                  disabled=""
+                  rippleeffect=""
+                  class="btn btn-outline-secondary btn-prev waves-effect"
+                >
+                  <i data-feather="arrow-left" class="font-medium-2 mr-50"></i
+                  ><span class="align-middle d-sm-inline-block d-none"
+                    >Previous</span
+                  ></button
+                ><button
+                  rippleeffect=""
+                  class="btn btn-primary btn-next waves-effect waves-float waves-light"
+                >
+                  <span class="align-middle d-sm-inline-block d-none">Next</span
+                  ><i data-feather="arrow-right" class="font-medium-2 ml-50"></i
+                    >
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </section>
   </div>
 </div>
