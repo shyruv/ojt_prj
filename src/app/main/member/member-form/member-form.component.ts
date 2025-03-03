@@ -17,31 +17,9 @@ import Stepper from 'bs-stepper';
 })
 export class MemberFormComponent implements OnInit {
   public contentHeader: object;
-  public personalInfo: any = {
-    firstName: null,
-    lastName: null,
-    middleName: null,
-    suffixName: null,
-    region: null,
-    age: null,
-    street: null,
-    zipCode: null,
-    gender: null,
-    province: null,
-    barangay: null,
-    city: null,
-    birthDate: null,
-    educationalAttainment: null,
-    civilStatus: null,
-    phoneNumber: null,
-  };
+  
   private unsubscribeAll: Subject<any>;
-  public customDateOptions: FlatpickrOptions = {
-    altFormat: "Y-m-d",
-    altInput: true,
-    maxDate: "today",
-    // defaultDate: "2000-03-26"
-  };
+  
   private horizontalWizardStepper: Stepper;
   private bsStepper;
 
@@ -56,7 +34,6 @@ export class MemberFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.customDateOptions.defaultDate = "2001-05-01";
     const data = this.activatedRoute.snapshot.data;
     console.log("Activated route", data);
     this.contentHeader = {
@@ -78,11 +55,7 @@ export class MemberFormComponent implements OnInit {
         ],
       },
     };
-    if (data.breadcrumb !== "New") {
-      const memberId = this.activatedRoute.snapshot.params["id"];
-      this.getMemberById();
-      console.log("Member ID");
-    }
+    
 
     this.horizontalWizardStepper = new Stepper(document.querySelector('#stepper1'), {});
     console.log("HS: ", this.horizontalWizardStepper);
@@ -94,55 +67,5 @@ export class MemberFormComponent implements OnInit {
     this.horizontalWizardStepper.to(stepNumber);
   }
 
-  addMembers() {
-    const value = this.personalInfoForm.value;
-
-    if (this.personalInfoForm.invalid) {
-      console.log("Form is invalid.");
-      return;
-    }
-    console.log("Value: ", value);
-    this.memberService
-      .apiVversionMembersCreateMemberPost(
-        environment.apiVersion,
-        this.personalInfoForm.value
-      )
-      .pipe(takeUntil(this.unsubscribeAll))
-      .subscribe((response) => {
-        console.log("Response", response);
-        // this.router.navigate(["/members"]);
-      });
-  }
-  getMemberById() {
-   const memberData=this.activatedRoute.snapshot.data
-   ?this.activatedRoute.snapshot.data.MemberDetails.data
-   :null
-   this.personalInfo=memberData
-   this.personalInfo.birthDate=this.personalInfo.birthDate.split('T')[0]
-   this.customDateOptions.defaultDate=new Date(this.personalInfo.birthDate)
-  //  console.log(this.activatedRoute.snapshot.data.MemberDetails.data)
-  }
-  calculateAge(birthDate: Date): number {
-    const today = new Date();
-    const birthDateParsed = new Date(birthDate);
-    let age = today.getFullYear() - birthDateParsed.getFullYear();
-
-    const monthDiff = today.getMonth() - birthDateParsed.getMonth();
-    const dayDiff = today.getDate() - birthDateParsed.getDate();
-
-    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
-      age--;
-    }
-
-    return age;
-  }
-  onChangeBirthDate(event) {
-    this.personalInfo.birthDate =
-      this.datePipe.transform(event.target.value, "yyyy-MM-dd") +
-      "T00:00:00.000Z";
-    this.personalInfo.birthDate = Array.isArray(this.personalInfo.birthDate)
-      ? this.personalInfo.birthDate[0]
-      : this.personalInfo.birthDate;
-    this.personalInfo.age = this.calculateAge(event.target.value);
-  }
+  
 }

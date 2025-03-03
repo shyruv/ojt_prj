@@ -17,9 +17,10 @@ import { CoreDirectivesModule } from "@core/directives/directives";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { NgxMaskModule } from "ngx-mask";
 import { NgxPatternModule } from "ngx-pattern";
+import { PersonalInfoComponent } from './personal-info/personal-info.component';
 
 @NgModule({
-  declarations: [MemberComponent, MemberFormComponent],
+  declarations: [MemberComponent, MemberFormComponent, PersonalInfoComponent],
   imports: [
     NgxDatatableModule,
     CommonModule,
