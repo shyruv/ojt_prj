@@ -7,6 +7,7 @@ import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 import { FlatpickrOptions } from "ng2-flatpickr";
 import { DatePipe } from "@angular/common";
+import Stepper from 'bs-stepper';
 
 @Component({
   selector: "app-member-form",
@@ -41,6 +42,9 @@ export class MemberFormComponent implements OnInit {
     maxDate: "today",
     // defaultDate: "2000-03-26"
   };
+  private horizontalWizardStepper: Stepper;
+  private bsStepper;
+
   @ViewChild("personalInfoForm") personalInfoForm: NgForm;
   constructor(
     private memberService: MembersService,
@@ -79,6 +83,15 @@ export class MemberFormComponent implements OnInit {
       this.getMemberById();
       console.log("Member ID");
     }
+
+    this.horizontalWizardStepper = new Stepper(document.querySelector('#stepper1'), {});
+    console.log("HS: ", this.horizontalWizardStepper);
+
+    this.bsStepper = document.querySelectorAll('.bs-stepper');
+  }
+
+  goTo(stepNumber){
+    this.horizontalWizardStepper.to(stepNumber);
   }
 
   addMembers() {
