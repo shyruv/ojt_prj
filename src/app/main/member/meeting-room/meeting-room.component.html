@@ -1,0 +1,59 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="form-label" for="list">List of Rooms</label>
+          <select
+            name="list"
+            id="list"
+            class="form-control"
+            [(ngModel)]="meetingRoom.list"
+            (change)="updateRoomDetails()"
+            [ngClass]="{ 'is-invalid': validationErrors.list }"
+          >
+            <option value="" disabled selected hidden>Select a room</option>
+            <option value="conference_alpha">Conference Room Alpha</option>
+            <option value="boardroom_executive">Executive Boardroom</option>
+            <option value="training_bravo">Training Room Bravo</option>
+            <option value="client_lounge">Client Lounge</option>
+            <option value="innovation_lab">Innovation Lab</option>
+            <option value="green_room">Green Room</option>
+            <option value="project_collab_room">Project Collaboration Room</option>
+            <option value="vip_lounge" disabled>VIP Lounge (Reserved)</option>
+            <option value="strategy_room" disabled>Strategy Room (Reserved)</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="validationErrors.list">This is field is required.</div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="form-label" for="buildingFloor" >Building & Floor</label>
+          <input
+            name="buildingFloor"
+            id="buildingFloor"
+            type="text"
+            class="form-control"
+            [value]="selectedRoom ? selectedRoom.building + ' - ' + selectedRoom.floor : ''"
+            readonly
+          />
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="form-label" for="address"> Address</label>
+          <input
+            for="address"
+            for="address"
+            type="text"
+            class="form-control"
+            [value]="selectedRoom ? selectedRoom.address : ''"
+            readonly
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

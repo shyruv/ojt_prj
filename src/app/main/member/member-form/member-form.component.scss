@@ -10,4 +10,13 @@
 
 .step{
     cursor: pointer;
+    
 }
+
+.inactive-step {
+    opacity: 0.5;
+    pointer-events: none;  
+  }
+  
+    
+  

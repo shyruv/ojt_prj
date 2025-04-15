@@ -1,0 +1,134 @@
+<form class="form">
+  <form #personalInfoForm="ngForm">
+    <div class="form-row">
+
+      <div class="form-group col-md-4">
+        <label class="form-label" for="manager">Name of Manager</label>
+        <input
+          name="manager"
+          type="text"
+          class="form-control"
+          id="manager"
+          [(ngModel)]="personalInfo.manager"
+          placeholder="Enter name of manager"
+          [ngClass]="{ 'is-invalid': validationErrors.manager }"
+        />
+          <div class="invalid-feedback" *ngIf="validationErrors.manager">This field is required.</div>
+      </div>
+
+      <!-- Employee Name Input (Not Required) -->
+      <div class="form-group col-md-4">
+        <label class="form-label" for="employeeName">Name of Employee</label>
+        <div class="input-group">
+          <input
+            name="employeeName"
+            type="text"
+            class="form-control"
+            id="employeeName"
+            [(ngModel)]="personalInfo.employeeName"
+            placeholder="Enter employee name"
+          />
+          <div class="input-group-append">
+            <button type="button" class="btn btn-primary" (click)="addEmployeeName()">Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Department Selection -->
+      <div class="form-group col-md-4">
+        <label class="form-label" for="department">Department</label>
+        <select
+          name="department"
+          id="department"
+          class="form-control"
+          [(ngModel)]="personalInfo.department"
+          [ngClass]="{ 'is-invalid': validationErrors.department }"
+        >
+        <option value="" disabled selected hidden>Select a department</option>
+          <option value="accounting">Accounting Department</option>
+          <option value="admin">Admin Department</option>
+          <option value="area_manager">Area Manager Department</option>
+          <option value="billing_collection">Billing & Collection Department</option>
+          <option value="cashier">Cashier Department</option>
+          <option value="engineering">Engineering Department</option>
+          <option value="icd">ICD Department</option>
+          <option value="ict">ICT Department</option>
+          <option value="inventory">Inventory Staff Department</option>
+          <option value="marketing">Marketing Department</option>
+          <option value="membership">Membership Department</option>
+          <option value="merchandise_trading">Merchandise & Trading Department</option>
+          <option value="paiwi">Paiwi Department</option>
+          <option value="purchasing">Purchasing Department</option>
+          <option value="regional_manager">Regional Manager Department</option>
+          <option value="store_officer">Store Officer Department</option>
+          <option value="treasury">Treasury Department</option>
+        </select>
+        <div class="invalid-feedback" *ngIf="validationErrors.department">This field is required.</div>
+      </div>
+
+      <!-- Meeting Purpose -->
+      <div class="form-group col-md-4">
+        <label class="form-label" for="purpose">Meeting Purpose</label>
+        <input
+          name="purpose"
+          type="text"
+          class="form-control"
+          id="purpose"
+          [(ngModel)]="personalInfo.purpose"
+          placeholder="Enter meeting purpose"
+          [ngClass]="{ 'is-invalid': validationErrors.purpose }"
+        />
+        <div class="invalid-feedback" *ngIf="validationErrors.purpose">This field is required.</div>
+      </div>
+
+      <!-- Local Number -->
+      <div class="form-group col-md-4">
+        <label class="form-label" for="localNumber">Local Number</label>
+        <input
+          name="localNumber"
+          type="number"
+          class="form-control"
+          id="localNumber"
+          [(ngModel)]="personalInfo.localNumber"
+          placeholder="Enter local number"
+          [ngClass]="{ 'is-invalid': validationErrors.localNumber }"
+        />
+        <div class="invalid-feedback" *ngIf="validationErrors.localNumber">This field is required.</div>
+      </div>
+
+      <!-- Number of Attendees -->
+      <div class="form-group col-md-4">
+        <label class="form-label" for="attendees">No. of Attendees</label>
+        <input
+          name="attendees"
+          type="number"
+          class="form-control"
+          id="attendees"
+          [(ngModel)]="personalInfo.attendees"
+          placeholder="Enter number of attendees"
+          [ngClass]="{ 'is-invalid': validationErrors.attendees }"
+        />
+        <div class="invalid-feedback" *ngIf="validationErrors.attendees">This field is required.</div>
+      </div>
+
+    </div>
+
+    <!-- Employee List Dropdown -->
+    <div class="form-group col-md-12 mt-3">
+      <button type="button" class="btn btn-primary" (click)="toggleEmployeeList()">
+        {{ showEmployeeList ? 'Hide' : 'Show' }} Added Employees
+      </button>
+
+      <div *ngIf="showEmployeeList" class="mt-2">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center"
+              *ngFor="let name of personalInfo.employeeNamesList; let i = index">
+            {{ name }}
+            <button type="button" class="btn btn-danger btn-sm" (click)="removeEmployeeName(i)">Remove</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </form>
+</form>

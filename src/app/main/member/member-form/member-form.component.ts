@@ -1,13 +1,14 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
-import { NgForm } from "@angular/forms";
+import { Component, OnInit, ViewChild, AfterViewInit, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { MembersService } from "app/api";
-import { environment } from "environments/environment";
 import { Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
-import { FlatpickrOptions } from "ng2-flatpickr";
 import { DatePipe } from "@angular/common";
-import Stepper from 'bs-stepper';
+import { ChangeDetectorRef } from "@angular/core";
+import Stepper from "bs-stepper";
+import { ToastrService } from "ngx-toastr"; 
+import { PersonalInfoComponent } from "./personal-info/personal-info.component";
+import { DateTimeComponent } from "../date-time/date-time.component";
+import { MeetingRoomComponent } from "../meeting-room/meeting-room.component";
+import { ReviewComponent } from "../review/review.component";
 
 @Component({
   selector: "app-member-form",
@@ -15,27 +16,29 @@ import Stepper from 'bs-stepper';
   styleUrls: ["./member-form.component.scss"],
   encapsulation: ViewEncapsulation.None,
 })
-export class MemberFormComponent implements OnInit {
+export class MemberFormComponent implements OnInit, AfterViewInit {
   public contentHeader: object;
-  
   private unsubscribeAll: Subject<any>;
-  
   private horizontalWizardStepper: Stepper;
-  private bsStepper;
+  public activeStep: number = 1;
 
-  @ViewChild("personalInfoForm") personalInfoForm: NgForm;
+  @ViewChild("personalInfo") personalInfoComponent!: PersonalInfoComponent;
+  @ViewChild("dateTime") dateTimeComponent!: DateTimeComponent;
+  @ViewChild("meetingRoom") meetingRoomComponent!: MeetingRoomComponent;
+  @ViewChild("review") ReviewComponentomponent!: ReviewComponent;
+  
   constructor(
-    private memberService: MembersService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private cdRef: ChangeDetectorRef,
+    private toastr: ToastrService  // Inject Toastr service
   ) {
     this.unsubscribeAll = new Subject();
   }
 
   ngOnInit(): void {
     const data = this.activatedRoute.snapshot.data;
-    console.log("Activated route", data);
     this.contentHeader = {
       headerTitle: data.title,
       actionButton: false,
@@ -43,11 +46,10 @@ export class MemberFormComponent implements OnInit {
         type: "",
         links: [
           {
-            name: "Members",
+            name: "Meeting",
             isLink: true,
             link: "/members/",
           },
-
           {
             name: data.breadcrumb,
             isLink: false,
@@ -55,17 +57,61 @@ export class MemberFormComponent implements OnInit {
         ],
       },
     };
+
+    this.horizontalWizardStepper = new Stepper(document.querySelector("#stepper1"), {
+      linear: false,
+      animation: true,
+    });
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.cdRef.detectChanges();
+    });
+  }
+
+  nextStep() {
+    this.horizontalWizardStepper.next();
+    this.activeStep++;
+  }
+
+  prevStep() {
+    this.horizontalWizardStepper.previous();
+    this.activeStep--;
+  }
+
+  // goTo(stepNumber: nr) {
+  //   this.horizontalWizardStepper.to(stepNumber);
+  //   this.activeStep = stepNumber; 
+  //    goTo(stepNumber: nr) {}
+  // }
+
+
+  validateAndNext() {
+    setTimeout(() => {
+      this.cdRef.detectChanges();
+
+      if (this.activeStep === 1 && this.personalInfoComponent.validateFields()) {
+        this.nextStep();
+      } else if (this.activeStep === 2 && this.dateTimeComponent.validateFields()) {
+        this.nextStep();
+      } else if (this.activeStep === 3 && this.meetingRoomComponent.validateFields()) {
+        this.nextStep();
+      }
+    }, 0);
+  }
+
+  onSubmit() {
     
+    this.toastr.success("Request submitted successfully!", "Success", {
+      timeOut: 2000,
+      positionClass: "toast-bottom-center",
+      toastClass: "toast ngx-toastr",
+    });
 
-    this.horizontalWizardStepper = new Stepper(document.querySelector('#stepper1'), {});
-    console.log("HS: ", this.horizontalWizardStepper);
-
-    this.bsStepper = document.querySelectorAll('.bs-stepper');
+    
+    setTimeout(() => {
+      this.router.navigate(["/members"]);
+    }, 3000);
   }
-
-  goTo(stepNumber){
-    this.horizontalWizardStepper.to(stepNumber);
-  }
-
-  
 }

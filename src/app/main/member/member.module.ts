@@ -17,10 +17,14 @@ import { CoreDirectivesModule } from "@core/directives/directives";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { NgxMaskModule } from "ngx-mask";
 import { NgxPatternModule } from "ngx-pattern";
-import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { PersonalInfoComponent } from './member-form/personal-info/personal-info.component';
+import { DateTimeComponent } from './date-time/date-time.component';
+import { MeetingRoomComponent } from './meeting-room/meeting-room.component';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
-  declarations: [MemberComponent, MemberFormComponent, PersonalInfoComponent],
+  declarations: [MemberComponent, MemberFormComponent,
+     PersonalInfoComponent, DateTimeComponent, MeetingRoomComponent, ReviewComponent],
   imports: [
     NgxDatatableModule,
     CommonModule,

@@ -1,246 +1,111 @@
 <div class="content-wrapper container-xxl p-0">
   <div class="content-body">
     <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
     <section id="members">
       <section class="modern-horizontal-wizard">
-        <div
-          id="stepper1"
-          class="bs-stepper wizard-modern modern-wizard-example"
-        >
+        <div id="stepper1" class="bs-stepper wizard-modern modern-wizard-example">
           <div class="bs-stepper-header">
-            <div data-target="#personal-info-modern" class="step" (click)="goTo(1)">
+            <div data-target="#meeting-details-m" class="step" [ngClass]="{ 'inactive-step': activeStep !== 1 }">
               <button type="button" class="step-trigger">
-                <span class="bs-stepper-box"
-                  ><i class="font-medium-2" data-feather="user"></i></span
-                ><span class="bs-stepper-label"
-                  ><span class="bs-stepper-title">Personal Info</span
-                  ><span class="bs-stepper-subtitle"
-                    >Add Personal Info</span
-                  ></span
-                >
+                <span class="bs-stepper-box"><i class="font-medium-2" data-feather="file-text"></i></span>
+                <span class="bs-stepper-label"><span class="bs-stepper-title">Meeting Details</span></span>
               </button>
             </div>
-            <div class="line">
-              <i data-feather="chevron-right" class="font-medium-2"></i>
-            </div>
-            <div data-target="#training-modern" class="step" (click)="goTo(2)">
-              <button type="button" class="step-trigger" >
-                <span class="bs-stepper-box"
-                  ><i class="font-medium-2" data-feather="type"></i></span
-                ><span class="bs-stepper-label"
-                  ><span class="bs-stepper-title">Training</span
-                  ><span class="bs-stepper-subtitle"
-                    >Set Training Details</span
-                  ></span
-                >
+
+            <div class="line"><i data-feather="chevron-right" class="font-medium-2"></i></div>
+
+            <div data-target="#date-time-m" class="step" [ngClass]="{ 'inactive-step': activeStep !== 2 }">
+              <button type="button" class="step-trigger">
+                <span class="bs-stepper-box"><i class="font-medium-2" data-feather="calendar"></i></span>
+                <span class="bs-stepper-label"><span class="bs-stepper-title">Date & Time</span></span>
               </button>
             </div>
-            <div class="line">
-              <i data-feather="chevron-right" class="font-medium-2"></i>
-            </div>
-            <div data-target="#payment-modern" class="step" (click)="goTo(3)">
+
+            <div class="line"><i data-feather="chevron-right" class="font-medium-2"></i></div>
+
+            <div data-target="#room-m" class="step" [ngClass]="{ 'inactive-step': activeStep !== 3 }">
               <button type="button" class="step-trigger">
-                <span class="bs-stepper-box"
-                  ><i
-                    class="font-medium-2"
-                    data-feather="dollar-sign"
-                  ></i></span
-                ><span class="bs-stepper-label"
-                  ><span class="bs-stepper-title">Payment</span
-                  ><span class="bs-stepper-subtitle">Add Payment</span></span
-                >
+                <span class="bs-stepper-box"><i class="font-medium-2" data-feather="users"></i></span>
+                <span class="bs-stepper-label"><span class="bs-stepper-title">Meeting Room</span></span>
               </button>
             </div>
-            <div class="line">
-              <i data-feather="chevron-right" class="font-medium-2"></i>
-            </div>
-            <div data-target="#requirements-modern" class="step" (click)="goTo(4)">
+
+            <div class="line"><i data-feather="chevron-right" class="font-medium-2"></i></div>
+
+            <div data-target="#review-m" class="step" [ngClass]="{ 'inactive-step': activeStep !== 4 }">
               <button type="button" class="step-trigger">
-                <span class="bs-stepper-box"
-                  ><i class="font-medium-2" data-feather="briefcase"></i></span
-                ><span class="bs-stepper-label"
-                  ><span class="bs-stepper-title">Requirements</span
-                  ><span class="bs-stepper-subtitle"
-                    >Submit Requirements</span
-                  ></span
-                >
-              </button>
-            </div>
-            <div class="line">
-              <i data-feather="chevron-right" class="font-medium-2"></i>
-            </div>
-            <div data-target="#review-modern" class="step" (click)="goTo(5)">
-              <button type="button" class="step-trigger">
-                <span class="bs-stepper-box"
-                  ><i class="font-medium-2" data-feather="file-text"></i></span
-                ><span class="bs-stepper-label"
-                  ><span class="bs-stepper-title">Review</span
-                  ><span class="bs-stepper-subtitle">Review Your Info</span></span
-                >
+                <span class="bs-stepper-box"><i class="font-medium-2" data-feather="check-square"></i></span>
+                <span class="bs-stepper-label"><span class="bs-stepper-title">Review</span></span>
               </button>
             </div>
           </div>
+
           <div class="bs-stepper-content">
-            <div
-              id="personal-info-modern"
-              class="content fade dstepper-block dstepper-none"
-            >
+            <div id="meeting-details-m" class="content fade" [ngClass]="{ 'dstepper-block': activeStep === 1 }">
               <div class="content-header">
-                <h5 class="mb-0">Personal Info</h5>
-                <small class="text-muted">Enter Your Personal Info.</small>
+                <h5 class="mb-0">Meeting Details</h5>
+                <small>Enter Meeting Details</small>
               </div>
 
-              <!--Personal Info-->
-              <app-personal-info></app-personal-info>
+              <app-personal-info #personalInfo></app-personal-info>
 
-
-              <div class="d-flex justify-content-between">
-                <button
-                  disabled=""
-                  rippleeffect=""
-                  class="btn btn-outline-secondary btn-prev waves-effect"
-                >
-                  <i data-feather="arrow-left" class="font-medium-2 mr-50"></i
-                  ><span class="align-middle d-sm-inline-block d-none"
-                    >Previous</span
-                  ></button
-                ><button
-                  rippleeffect=""
-                  class="btn btn-primary btn-next waves-effect waves-float waves-light"
-                >
-                  <span class="align-middle d-sm-inline-block d-none">Next</span
-                  ><i data-feather="arrow-right" class="font-medium-2 ml-50"></i
-                    >
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-primary btn-next" (click)="validateAndNext()">
+                  <span>Next</span>
+                  <i data-feather="arrow-right" class="font-medium-2 ml-50"></i>
                 </button>
               </div>
             </div>
-            <div
-              id="training-modern"
-              class="content fade dstepper-block active"
-            >
+
+            <div id="date-time-m" class="content fade" [ngClass]="{ 'dstepper-block': activeStep === 2 }">
               <div class="content-header">
-                <h5 class="mb-0">Training</h5>
-                <small>Set training details.</small>
+                <h5 class="mb-0">Date & Time</h5>
+                <small>Set Date & Time</small>
               </div>
 
-              <!--Training Form Here-->
-              
+              <app-date-time #dateTime></app-date-time>
+
               <div class="d-flex justify-content-between">
-                <button
-                  disabled=""
-                  rippleeffect=""
-                  class="btn btn-outline-secondary btn-prev waves-effect"
-                >
-                  <i data-feather="arrow-left" class="font-medium-2 mr-50"></i
-                  ><span class="align-middle d-sm-inline-block d-none"
-                    >Previous</span
-                  ></button
-                ><button
-                  rippleeffect=""
-                  class="btn btn-primary btn-next waves-effect waves-float waves-light"
-                >
-                  <span class="align-middle d-sm-inline-block d-none">Next</span
-                  ><i data-feather="arrow-right" class="font-medium-2 ml-50"></i
-                    >
+                <button class="btn btn-outline-secondary btn-prev" (click)="prevStep()">Previous</button>
+                <button class="btn btn-primary btn-next" (click)="validateAndNext()">Next</button>
+              </div>
+            </div>
+
+            <div id="room-m" class="content fade" [ngClass]="{ 'dstepper-block': activeStep === 3 }">
+              <div class="content-header">
+                <h5 class="mb-0">Meeting Room</h5>
+                <small>Select Meeting Room</small>
+              </div>
+
+              <app-meeting-room #meetingRoom></app-meeting-room>
+
+              <div class="d-flex justify-content-between">
+                <button class="btn btn-outline-secondary btn-prev" (click)="prevStep()">Previous</button>
+                <button class="btn btn-primary btn-next" (click)="validateAndNext()">Next</button>
+              </div>
+            </div>
+
+            <div id="review-m" class="content fade" [ngClass]="{ 'dstepper-block': activeStep === 4 }">
+              <div class="content-header">
+                <h5 class="mb-0">Review & Submit</h5>
+              </div>
+
+              <app-review></app-review>
+
+              <div class="d-flex justify-content-between">
+                <button class="btn btn-outline-secondary btn-prev" (click)="prevStep()">Previous</button>
+                <button class="btn btn-primary btn-submit" (click)="onSubmit()">
+                  <span>Submit</span>
+                  <i data-feather="check" class="font-medium-2 ml-50"></i>
                 </button>
               </div>
             </div>
-            <div
-              id="payment-modern"
-              class="content fade dstepper-block dstepper-none"
-            >
-              <div class="content-header">
-                <h5 class="mb-0">Payment</h5>
-                <small>Add payment.</small>
-              </div>
-              
-              <!--Payment Form Goes Here-->
 
-              <div class="d-flex justify-content-between">
-                <button
-                  disabled=""
-                  rippleeffect=""
-                  class="btn btn-outline-secondary btn-prev waves-effect"
-                >
-                  <i data-feather="arrow-left" class="font-medium-2 mr-50"></i
-                  ><span class="align-middle d-sm-inline-block d-none"
-                    >Previous</span
-                  ></button
-                ><button
-                  rippleeffect=""
-                  class="btn btn-primary btn-next waves-effect waves-float waves-light"
-                >
-                  <span class="align-middle d-sm-inline-block d-none">Next</span
-                  ><i data-feather="arrow-right" class="font-medium-2 ml-50"></i
-                    >
-                </button>
-              </div>
-            </div>
-            <div
-              id="requirements-modern"
-              class="content fade dstepper-block dstepper-none"
-            >
-              <div class="content-header">
-                <h5 class="mb-0">Requirements</h5>
-                <small>Submit requirements.</small>
-              </div>
-
-              <!--Requirements Form Goes Here-->
-
-              <div class="d-flex justify-content-between">
-                <button
-                  disabled=""
-                  rippleeffect=""
-                  class="btn btn-outline-secondary btn-prev waves-effect"
-                >
-                  <i data-feather="arrow-left" class="font-medium-2 mr-50"></i
-                  ><span class="align-middle d-sm-inline-block d-none"
-                    >Previous</span
-                  ></button
-                ><button
-                  rippleeffect=""
-                  class="btn btn-primary btn-next waves-effect waves-float waves-light"
-                >
-                  <span class="align-middle d-sm-inline-block d-none">Next</span
-                  ><i data-feather="arrow-right" class="font-medium-2 ml-50"></i
-                    >
-                </button>
-              </div>
-            </div>
-            <div
-              id="review-modern"
-              class="content fade dstepper-block dstepper-none"
-            >
-              <div class="content-header">
-                <h5 class="mb-0">Review</h5>
-                <small>Review your information.</small>
-              </div>
-
-              <!--Review Form Goes Here-->
-
-              <div class="d-flex justify-content-between">
-                <button
-                  disabled=""
-                  rippleeffect=""
-                  class="btn btn-outline-secondary btn-prev waves-effect"
-                >
-                  <i data-feather="arrow-left" class="font-medium-2 mr-50"></i
-                  ><span class="align-middle d-sm-inline-block d-none"
-                    >Previous</span
-                  ></button
-                ><button
-                  rippleeffect=""
-                  class="btn btn-primary btn-next waves-effect waves-float waves-light"
-                >
-                  <span class="align-middle d-sm-inline-block d-none">Next</span
-                  ><i data-feather="arrow-right" class="font-medium-2 ml-50"></i
-                    >
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </section>
     </section>
   </div>
 </div>
+  

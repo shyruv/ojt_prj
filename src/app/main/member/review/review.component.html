@@ -1,0 +1,61 @@
+<div>Review Your Details</div>
+
+<!-- Meeting Details Section -->
+<div class="review-section">
+  <h5>Meeting Details</h5>
+  <div class="review-item">
+    <strong>Manager's Name:</strong> {{ manager }}
+  </div>
+  <div class="review-item">
+    <strong>Department:</strong> {{ department }}
+  </div>
+  <div class="review-item">
+    <strong>Meeting Purpose:</strong> {{ purpose }}
+  </div>
+  <div class="review-item">
+    <strong>Local Number:</strong> {{ localNumber }}
+  </div>
+</div>
+
+<!-- Date & Time Section -->
+<div class="review-section">
+  <h5>Date & Time</h5>
+  <div class="review-item">
+    <strong>Date:</strong> {{ date }}
+  </div>
+  <div class="review-item">
+    <strong>Start Time:</strong> {{ startTime }}
+  </div>
+  <div class="review-item">
+    <strong>End Time:</strong> {{ endTime }}
+  </div>
+</div>
+
+<!-- Meeting Room Section -->
+<div class="review-section">
+  <h5>Meeting Room</h5>
+  <div class="review-item">
+    <strong>Room:</strong> {{ list }}
+  </div>
+  <div class="review-item">
+    <strong>Building & Floor:</strong> {{ buildingFloor }}
+  </div>
+  <div class="review-item">
+    <strong>Address:</strong> {{ address }}
+  </div>
+</div>
+
+<!-- Attendees Section -->
+<div class="review-section mb-4">
+  <h5>Attendees</h5>
+  <div class="review-item">
+    <strong>Number of Attendees:</strong> {{ attendees.length }}
+  </div>
+
+  <h6 *ngIf="attendees.length > 0">Employee List:</h6>
+  <ul *ngIf="attendees.length > 0">
+    <li *ngFor="let name of attendees">{{ name }}</li>
+  </ul>
+
+  <p *ngIf="attendees.length === 0">No employees listed.</p>
+</div>

@@ -1,0 +1,81 @@
+<div class="auth-wrapper auth-v1 px-2">
+  <div class="auth-inner py-2">
+    <!-- Login Card -->
+    <div class="card mb-0">
+      <div class="card-body">
+        <!-- Logo & App Name -->
+        <a href="javascript:void(0);" class="brand-logo d-flex flex-column align-items-center text-center">
+          <img src="{{ coreConfig.app.appLogoImage }}" alt="brand-logo" height="50" class="logo-img"/>
+          <h2 class="brand-text text-primary mt-1">{{ coreConfig.app.appName }}</h2>
+          <p class="subtitle text-muted">Meeting Organizer</p>
+        </a>
+
+        <!-- Login Title -->
+        <h4 class="card-title mb-1 text-center">Please sign-in to your account</h4>
+
+        <!-- Login Form -->
+        <form class="auth-login-form mt-2" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <!-- Username Field -->
+          <div class="form-group">
+            <label for="login-username" class="form-label">Username</label>
+            <input
+              type="text"
+              formControlName="username"
+              class="form-control"
+              tabindex="1"
+              autofocus
+              [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+            />
+            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+              <div *ngIf="f.username.errors.required">Username is required</div>
+            </div>
+          </div>
+
+          <!-- Password Field -->
+          <div class="form-group">
+            <div class="d-flex justify-content-between">
+              <label for="login-password">Password</label>
+              <a routerLink="/auth/forgot-password">
+                <small>Forgot Password?</small>
+              </a>
+            </div>
+            <div class="input-group input-group-merge form-password-toggle">
+              <input
+                [type]="passwordTextType ? 'text' : 'password'"
+                formControlName="password"
+                class="form-control form-control-merge"
+                tabindex="2"
+                [ngClass]="{ 'is-invalid error': submitted && f.password.errors }"
+              />
+              <div class="input-group-append">
+                <span class="input-group-text cursor-pointer">
+                  <i
+                    class="feather font-small-4"
+                    [ngClass]="{
+                      'icon-eye-off': passwordTextType,
+                      'icon-eye': !passwordTextType
+                    }"
+                    (click)="togglePasswordTextType()"
+                  ></i>
+                </span>
+              </div>
+            </div>
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Password is required</div>
+            </div>
+          </div>
+
+          <!-- Remember Me (Optional) -->
+          <div class="form-group">
+            <div class="custom-control custom-checkbox">
+              <input class="custom-control-input" type="checkbox" id="remember-me" tabindex="3" />
+            </div>
+          </div>
+
+          <!-- Sign In Button -->
+          <button class="btn btn-primary btn-block" tabindex="4" rippleEffect>Sign in</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -14,32 +14,32 @@ const routes: Routes = [
     path: "add",
     component: MemberFormComponent,
     data: {
-      title: "Add New Member",
-      breadcrumb: "New",
+      title: "Add Meeting",
+      breadcrumb: "Request",
     },
-  },
-  {
-    path: "view/:id",
-    component: MemberFormComponent,
-    data: {
-      title: "View Member",
-      breadcrumb: "View",
-    },
-    resolve: {
-      MemberDetails: MemberDetailsResolver,
-    },
-  },
-  {
-    path: "edit/:id",
-    component: MemberFormComponent,
-    data: {
-      title: "Edit Member",
-      breadcrumb: "Edit",
-    },
-    resolve: {
-      MemberDetails: MemberDetailsResolver,
-    },
-  },
+  }
+  // {
+  //   path: "view/:id",
+  //   component: MemberFormComponent,
+  //   data: {
+  //     title: "View Member",
+  //     breadcrumb: "View",
+  //   },
+  //   resolve: {
+  //     MemberDetails: MemberDetailsResolver,
+  //   },
+  // },
+  // {
+  //   path: "edit/:id",
+  //   component: MemberFormComponent,
+  //   data: {
+  //     title: "Edit Member",
+  //     breadcrumb: "Edit",
+  //   },
+  //   resolve: {
+  //     MemberDetails: MemberDetailsResolver,
+  //   },
+  // },
 ];
 
 @NgModule({

@@ -1,0 +1,57 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <section id="member-form">
+      <form class="form">
+        <div class="row">
+          <!-- Date Picker -->
+          <div class="form-group col-md-4">
+            <label class="form-label" for="date">Date</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              name="date" 
+              [(ngModel)]="selectedDate" 
+              [flatpickr]="dateOptions" 
+              placeholder="Select a date"
+              readonly
+              [ngClass]="{ 'is-invalid': validationErrors.date }"
+            />
+            <div class="invalid-feedback" *ngIf="validationErrors.date">This field is required.</div>
+          </div>     
+
+          <!-- Start Time -->
+          <div class="form-group col-md-4">
+            <label class="form-label" for="start-time">Start Time</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              name="start-time" 
+              [(ngModel)]="selectedStartTime"
+              [flatpickr]="timeOptions" 
+              placeholder="Select start time" 
+              readonly
+              [ngClass]="{ 'is-invalid': validationErrors.startTime }"
+            />
+            <div class="invalid-feedback" *ngIf="validationErrors.startTime">This field is required.</div>
+          </div>
+
+          <!-- End Time -->
+          <div class="form-group col-md-4">
+            <label class="form-label" for="end-time">End Time</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              name="end-time" 
+              [(ngModel)]="selectedEndTime"
+              [flatpickr]="timeOptions" 
+              placeholder="Select end time"
+              readonly
+              [ngClass]="{ 'is-invalid': validationErrors.endTime }"
+            />
+            <div class="invalid-feedback" *ngIf="validationErrors.endTime">This field is required.</div>
+          </div>
+        </div>
+      </form>
+    </section>
+  </div>
+</div>

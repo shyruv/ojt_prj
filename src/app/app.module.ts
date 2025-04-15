@@ -25,12 +25,15 @@ import { ApiInterceptor } from "./common/interceptors/api-interceptor";
 import { BASE_PATH, MembersService } from "./api";
 import { environment } from "environments/environment";
 
+
 const appRoutes: Routes = [
   {
     path: "",
-    redirectTo: "/members",
+    redirectTo: "/auth/login",
     pathMatch: "full",
+  
   },
+
 ];
 
 @NgModule({
@@ -38,6 +41,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    
     HttpClientModule,
     RouterModule.forRoot(appRoutes, {
       scrollPositionRestoration: "enabled", // Add options right here

@@ -18,10 +18,16 @@ const routes: Routes = [
   //   path: 'meters',
   //   loadChildren: () => import('./meters/meters.module').then(m => m.MetersModule)
   // },
-  // {
+  //  {
   //   path: 'accounts',
   //   loadChildren: () => import('./accounts/accounts.module').then(m => m.AccountsModule)
   // },
+
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+
   {
     path: 'members',
     loadChildren: () => import('./member/member.module').then(m => m.MembersModule)

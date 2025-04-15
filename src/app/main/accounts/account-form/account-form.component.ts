@@ -23,9 +23,9 @@ export class AccountFormComponent implements OnInit {
         type: '',
         links: [
           {
-            name: 'Accounts',
+            name: 'Admin',
             isLink: true,
-            link: '/accounts'
+            link: '/admin'
           },
           {
             name: breadcrumb,

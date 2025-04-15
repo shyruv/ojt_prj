@@ -1,0 +1,41 @@
+<div class="auth-wrapper auth-v1 px-2">
+    <div class="auth-inner py-2">
+      <!-- Login v1 -->
+      <div class="card mb-0">
+        <div class="card-body">
+          <a href="javascript:void(0);" class="brand-logo">
+            <img src="{{ coreConfig.app.appLogoImage }}" alt="brand-logo" height="28" />
+            <h2 class="brand-text text-primary ml-1">{{ coreConfig.app.appName }}</h2>
+          </a>
+  
+          <h4 class="card-title mb-1">Two Step Verification</h4>
+          <!-- <p class="card-text mb-2">We sent a verification code to your mobile. Enter the code from the mobile in the field below.</p> -->
+          <p class="card-text mb-2">We sent a verification code to your email. Enter the code from the email in the field below.</p>
+          <p class="font-weight-bolder mb-2 card-text">******cruz@gmail.com</p>
+          <form class="auth-login-form mt-2" [formGroup]="otpForm" (ngSubmit)="onSubmit()">
+            <h6>Type your 6 digit security code</h6>
+            <div class="auth-input-wrapper d-flex align-items-center justify-content-between">
+                <input maxlength="1" formControlName="otp1" type="text" (keyup)="onDigitInput($event)"  class="auth-input height-50 text-center numeral-mask mx-25 mb-1 form-control">
+                <input maxlength="1" formControlName="otp2" type="text" (keyup)="onDigitInput($event)"  class="auth-input height-50 text-center numeral-mask mx-25 mb-1 form-control">
+                <input maxlength="1" formControlName="otp3" type="text" (keyup)="onDigitInput($event)"  class="auth-input height-50 text-center numeral-mask mx-25 mb-1 form-control">
+                <input maxlength="1" formControlName="otp4" type="text" (keyup)="onDigitInput($event)"  class="auth-input height-50 text-center numeral-mask mx-25 mb-1 form-control">
+                <input maxlength="1" formControlName="otp5" type="text" (keyup)="onDigitInput($event)"  class="auth-input height-50 text-center numeral-mask mx-25 mb-1 form-control">
+                <input maxlength="1" formControlName="otp6" type="text" (keyup)="onDigitInput($event)"  class="auth-input height-50 text-center numeral-mask mx-25 mb-1 form-control">
+            </div>
+            <button class="btn btn-primary btn-block" tabindex="4" rippleEffect>Submit</button>
+          </form>
+          <div
+              *ngIf="submitted && (f.otp1.errors || f.otp2.errors || f.otp3.errors || f.otp4.errors || f.otp5.errors || f.otp6.errors)"
+              class="invalid-feedback"
+              [ngClass]="{ 'd-block': submitted && (f.otp1.errors || f.otp2.errors || f.otp3.errors || f.otp4.errors || f.otp5.errors || f.otp6.errors) }"
+            >
+              <div>Invalid OTP</div>
+            </div>
+         
+          <p class="text-center mt-2">
+              <span>Didn’t get the code? </span> <a href="/">Resend</a></p>
+        </div>
+      </div>
+    </div>
+</div>
+  

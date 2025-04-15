@@ -1,0 +1,15 @@
+input[readonly] {
+    background-color: white ;
+    color: black;
+    cursor: default;
+    border: 1px solid #ced4da; 
+  }
+  
+  option:disabled {
+    color: #999;
+    font-style: italic;
+    background-color: #f0f0f0;
+    opacity: 0.6;
+  }
+  
+  
