@@ -39,7 +39,7 @@ export class MemberComponent implements OnInit {
     this.allData = [
       {
         id: 1,
-        purpose: "Project Kickoff",
+        purpose: "Partnership Discussion",
         date: "04/20/2025",
         "start-time": "10:00 AM",
         "end-time": "11:00 AM",
@@ -48,7 +48,7 @@ export class MemberComponent implements OnInit {
       },
       {
         id: 2,
-        purpose: "Strategy Room",
+        purpose: "Executive Briefing",
         date: "04/21/2025",
         "start-time": "2:00 PM",
         "end-time": "3:00 PM",
@@ -57,16 +57,16 @@ export class MemberComponent implements OnInit {
       },
       {
         id: 3,
-        purpose: "Sprint Planning",
+        purpose: "Technical Skills Training",
         date: "04/22/2025",
         "start-time": "9:00 AM",
         "end-time": "10:30 AM",
-        "room-m": "Training Room Bravo",
+        "room-m": "Training Room",
         status: "rejected",
       },
       {
         id: 4,
-        purpose: "One-on-One",
+        purpose: "Competitive Analysis",
         date: "04/23/2025",
         "start-time": "4:00 PM",
         "end-time": "4:30 PM",

@@ -12,7 +12,7 @@ export class MeetingRoomComponent {
   roomDetails: { [key: string]: { address: string; building: string; floor: string } } = {
     conference_alpha: { address: '123 Main St', building: 'Building A', floor: '1st Floor' },
     boardroom_executive: { address: '456 Corporate Blvd', building: 'Stark Tower', floor: '5th Floor' },
-    training_bravo: { address: '789 Training Ln', building: 'Education Center', floor: '3rd Floor' },
+    training_room: { address: '789 Training Ln', building: 'Education Center', floor: '3rd Floor' },
     client_lounge: { address: '101 Business Ave', building: 'Client Hub', floor: '2nd Floor' },
     innovation_lab: { address: '202 Innovation St', building: 'Tech Park', floor: '4th Floor' },
     green_room: { address: '303 Creative Dr', building: 'Studio Complex', floor: 'Ground Floor' },
