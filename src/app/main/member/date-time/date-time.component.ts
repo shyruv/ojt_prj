@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MeetingDataService } from 'app/common/services/meeting-data.service';
 import { FlatpickrOptions } from 'ng2-flatpickr';
 
 @Component({
@@ -32,6 +33,7 @@ export class DateTimeComponent implements OnInit {
     minuteIncrement: 1,
     disableMobile: true
   };
+  constructor(private meetingDataService:MeetingDataService){}
 
   ngOnInit() {}
 
@@ -53,5 +55,9 @@ export class DateTimeComponent implements OnInit {
     }
 
     return isValid;
+  }
+  getDateAndTimeData() {
+    // console.log(this.personalInfo)
+    this.meetingDataService.getDateAndTimeData(this.selectedDate,this.selectedStartTime,this.selectedEndTime)
   }
 }

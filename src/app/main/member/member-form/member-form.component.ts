@@ -92,11 +92,15 @@ export class MemberFormComponent implements OnInit, AfterViewInit {
       this.cdRef.detectChanges();
 
       if (this.activeStep === 1 && this.personalInfoComponent.validateFields()) {
+        this.personalInfoComponent.getMeetingData()
         this.nextStep();
       } else if (this.activeStep === 2 && this.dateTimeComponent.validateFields()) {
+        this.dateTimeComponent.getDateAndTimeData()
         this.nextStep();
+      
       } else if (this.activeStep === 3 && this.meetingRoomComponent.validateFields()) {
-        this.nextStep();
+        this.meetingRoomComponent.getMeetingRoomData()
+        this.nextStep();    
       }
     }, 0);
   }

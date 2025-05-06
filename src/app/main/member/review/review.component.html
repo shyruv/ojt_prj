@@ -15,6 +15,7 @@
   <div class="review-item">
     <strong>Local Number:</strong> {{ localNumber }}
   </div>
+
 </div>
 
 <!-- Date & Time Section -->
@@ -49,13 +50,13 @@
 <div class="review-section mb-4">
   <h5>Attendees</h5>
   <div class="review-item">
-    <strong>Number of Attendees:</strong> {{ attendees.length }}
+    <strong>Number of Attendees:</strong> {{ attendees ? attendees.length : 0}}
   </div>
 
-  <h6 *ngIf="attendees.length > 0">Employee List:</h6>
-  <ul *ngIf="attendees.length > 0">
+  <h6 *ngIf="attendees && attendees.length > 0">Employee List:</h6>
+  <ul *ngIf="attendees && attendees.length > 0">
     <li *ngFor="let name of attendees">{{ name }}</li>
   </ul>
 
-  <p *ngIf="attendees.length === 0">No employees listed.</p>
+  <p *ngIf="attendees && attendees.length === 0">No employees listed.</p>
 </div>

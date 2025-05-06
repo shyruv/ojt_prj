@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MeetingDataService } from 'app/common/services/meeting-data.service';
 // import { MeetingService } from '../services/meeting.services';
 
 @Component({
@@ -7,18 +8,54 @@ import { Component } from '@angular/core';
   styleUrls: ['./review.component.scss']
 })
 export class ReviewComponent {
-  manager: string = "John Wick";
-  department: string = "IT Department";
-  purpose: string = "Project Planning Meeting";
-  localNumber: string = "179";
+  
+  manager: string = "";
+  department: string = "";
+  purpose: string = "";
+  localNumber: string = "";
 
-  date: string = "April 30, 2025";
-  startTime: string = "10:00 AM";
-  endTime: string = "11:30 AM";
+  date: string = "";
+  startTime: string = "";
+  endTime: string = "";
 
-  list: string = "Executive Boardroom";
-  buildingFloor: string = "Stark Tower - 5th Floor";
-  address: string = "456 Corporate Blvd";
+  list: string = "";
+  buildingFloor: string = "";
+  address: string = "";
 
-  attendees: string[] = ["Heihachi Mishima", "Jin Kazama", "Kazuya Mishima"];
+  attendees: string[] = [];
+  constructor(private meetingDataService: MeetingDataService,
+  ){
+    this.meetingDataService.meetingDetails$.subscribe((data) => {
+      console.log("data: ",data)
+      this.setMeetingDetails(data)
+    })
+    this.meetingDataService.dateAndTime$.subscribe((data) => {
+      console.log("data: ",data)
+      this.setDateAndTimeDetails(data)
+    })
+
+    this.meetingDataService.meetingRoom$.subscribe((data) => {
+      console.log("data: ",data)
+      this.setMeetingRoomDetails(data)
+    })
+  }
+  setMeetingDetails(data:any){
+    this.manager=data.manager
+    this.department=data.department
+    this.purpose=data.purpose
+    this.localNumber=data.localNumber
+    this.attendees=data.employeeNamesList
+
+  }
+  setDateAndTimeDetails(data:any){
+    this.date=data.selectedDate
+    this.startTime=data.selectedStartTime
+    this.endTime=data.selectedEndTime
+  }
+  setMeetingRoomDetails(data:any){
+    this.list=data.list
+    this.buildingFloor=data.buildingFloor
+    this.address=data.address
+  }
+
 }

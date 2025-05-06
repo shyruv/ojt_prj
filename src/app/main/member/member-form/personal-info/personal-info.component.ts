@@ -2,9 +2,11 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MembersService } from 'app/api';
+import { MeetingDataService } from 'app/common/services/meeting-data.service';
 import { environment } from 'environments/environment';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { DateTimeComponent } from '../../date-time/date-time.component';
 
 @Component({
   selector: 'app-personal-info',
@@ -29,9 +31,10 @@ export class PersonalInfoComponent implements OnInit {
   private unsubscribeAll: Subject<any>;
 
   @ViewChild("personalInfoForm") personalInfoForm: NgForm;
+  @ViewChild("dateTime") dateTimeComponent!: DateTimeComponent;
 
   constructor(
-    private memberService: MembersService,
+    private meetingDataService: MeetingDataService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
@@ -42,6 +45,10 @@ export class PersonalInfoComponent implements OnInit {
     if (this.activatedRoute.snapshot.data.breadcrumb !== "New") {
       this.getMemberById();
     }
+  }
+  getMeetingData() {
+    console.log(this.personalInfo)
+    this.meetingDataService.getMeetingDetailsData(this.personalInfo)
   }
 
   addEmployeeName() {
@@ -64,7 +71,7 @@ export class PersonalInfoComponent implements OnInit {
     let isValid = true;
 
     // Check required fields
-    ["manager", "department", "purpose", "localNumber", "attendees"].forEach(field => {
+    ["manager", "department", "purpose", "localNumber" ].forEach(field => {
       if (!this.personalInfo[field]) {
         this.validationErrors[field] = true;
         isValid = false;

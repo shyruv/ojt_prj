@@ -5,7 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 import { CoreConfigService } from '@core/services/config.service';
-//import { IdentityService } from 'app/api';
+
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit {
 
   // Hardcoded credentials (no backend)
   private readonly validUsers = [
-    { username: 'member', password: 'Password123', role: 'member' },
-    { username: 'admin', password: 'AdminPass123', role: 'admin' } // Hardcoded Admin Account
+    { username: 'employee1', password: 'Password123', role: 'member' },
+   
   ];
 
   // Private

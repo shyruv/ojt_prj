@@ -107,8 +107,9 @@
           [(ngModel)]="personalInfo.attendees"
           placeholder="Enter number of attendees"
           [ngClass]="{ 'is-invalid': validationErrors.attendees }"
+          [value]="personalInfo.employeeNamesList ? personalInfo.employeeNamesList.length : 0"
+          readonly
         />
-        <div class="invalid-feedback" *ngIf="validationErrors.attendees">This field is required.</div>
       </div>
 
     </div>
@@ -129,6 +130,7 @@
         </ul>
       </div>
     </div>
+    <!--  -->
 
   </form>
 </form>

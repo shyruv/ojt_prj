@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MeetingDataService } from 'app/common/services/meeting-data.service';
 
 @Component({
   selector: 'app-meeting-room',
@@ -6,8 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./meeting-room.component.scss']
 })
 export class MeetingRoomComponent {
-  meetingRoom = { list: '' };
-  validationErrors: any = {}; // Holds error states
+  meetingRoom = { list: '', buildingFloor: '', address: '' };
+  validationErrors: any = {};
 
   roomDetails: { [key: string]: { address: string; building: string; floor: string } } = {
     conference_alpha: { address: '123 Main St', building: 'Building A', floor: '1st Floor' },
@@ -39,4 +40,16 @@ export class MeetingRoomComponent {
 
     return isValid;
   }
+
+  constructor(private meetingDataService:MeetingDataService){}
+
+  getMeetingRoomData() {
+    
+    this.meetingRoom.buildingFloor=this.selectedRoom.building + ' - ' +this.selectedRoom.floor
+    this.meetingRoom.address=this.selectedRoom.address
+    console.log(this.meetingRoom)
+
+    this.meetingDataService.getMeetingRoomData(this.meetingRoom)
+  }
+
 }
